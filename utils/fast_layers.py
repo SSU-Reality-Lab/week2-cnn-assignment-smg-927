@@ -1,7 +1,8 @@
 from __future__ import print_function
+from utils.im2col_cython import col2im_6d_cython
 import numpy as np
 try:
-    from utils.im2col_cython import col2im_cython, im2col_cython
+    from utils.im2col_cython import col2im_cython ,im2col_cython
     from utils.im2col_cython import col2im_6d_cython
 except ImportError:
     print('run the following from the cs231n directory and try again:')
@@ -9,6 +10,11 @@ except ImportError:
     print('You may also need to restart your iPython kernel')
 
 from utils.im2col import *
+
+import utils.im2col_cython as m
+
+print(m.__file__)           # 로드된 바이너리 경로 확인
+print([s for s in dir(m) if 'col2im' in s])
 
 
 def conv_forward_im2col(x, w, b, conv_param):
